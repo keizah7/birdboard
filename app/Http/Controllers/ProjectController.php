@@ -10,11 +10,11 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = auth()->user()->projects;
 
         return view('projects.index', compact('projects'));
     }
@@ -33,7 +33,7 @@ class ProjectController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -49,10 +49,14 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Project  $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Project $project)
     {
+        if (auth()->user()->isNot($project->user)) {
+            abort(403);
+        }
+
         return view('projects.show', compact('project'));
     }
 

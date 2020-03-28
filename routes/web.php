@@ -17,8 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('projects', 'ProjectController')->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
+    Auth::routes();
 
-Auth::routes();
+    Route::resource('projects', 'ProjectController')->middleware('auth');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+

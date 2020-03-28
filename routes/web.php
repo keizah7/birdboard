@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'auth'], function () {
-    Auth::routes();
+Auth::routes();
 
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('projects', 'ProjectController')->middleware('auth');
     Route::get('/home', 'HomeController@index')->name('home');
 });

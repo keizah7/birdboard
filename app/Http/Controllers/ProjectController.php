@@ -38,7 +38,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         auth()->user()->projects()->create(request()->validate([
-        'title' => 'required',
+            'title' => 'required',
             'description' => 'required',
         ]));
 

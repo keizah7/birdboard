@@ -26,7 +26,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_create_a_project()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->signIn();
         $attributes = [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
@@ -46,18 +46,17 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_view_their_project()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->signIn();
 
         $project = factory(Project::class)->create(['user_id' => auth()->id()]);
         $this->get($project->path())
-            ->assertSee($project->title)
-            ->assertSee($project->description);
+            ->assertSee($project->title);
     }
 
     /** @test */
     public function a_user_cant_view_projects_of_others()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->signIn();
         $project = factory(Project::class)->create();
 
         $this->get($project->path())
@@ -67,7 +66,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_title()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->signIn();
 
         $attributes = factory(Project::class)->raw([
             'title' => '',
@@ -80,7 +79,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_description()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->signIn();
 
         $attributes = factory(Project::class)->raw([
             'description' => '',

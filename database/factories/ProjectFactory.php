@@ -10,6 +10,6 @@ $factory->define(Project::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(3),
         'description' => $faker->sentence(6),
-        'user_id' => factory(User::class)->create()->id,
+        'user_id' => factory(User::class),
     ];
 });

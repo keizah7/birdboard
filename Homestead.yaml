@@ -1,0 +1,26 @@
+ip: 192.168.10.10
+memory: 1024
+cpus: 1
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+    - ~/.ssh/id_rsa
+folders:
+    -
+        map: .
+        to: /home/vagrant/birdboard
+sites:
+    -
+        map: bird.test
+        to: /home/vagrant/birdboard/public
+databases:
+    - birdboard
+features:
+    -
+        mariadb: false
+    -
+        ohmyzsh: false
+    -
+        webdriver: false
+name: birdboard
+hostname: birdboard

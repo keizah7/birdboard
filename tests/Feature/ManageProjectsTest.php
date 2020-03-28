@@ -35,7 +35,7 @@ class ManageProjectsTest extends TestCase
         $this->get('projects/create')->assertOk();
 
         $this->post('projects', $attributes)
-            ->assertRedirect('projects');
+            ->assertStatus(302);
 
         $this->assertDatabaseHas('projects', $attributes);
 

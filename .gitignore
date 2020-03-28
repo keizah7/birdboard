@@ -11,3 +11,6 @@ npm-debug.log
 yarn-error.log
 .idea
 .vagrant
+public/css
+public/js
+public/mix-manifest.json

@@ -3,5 +3,5 @@
         <a href="{{ $project->path() }}" class="text-black no-underline">{{ $project->title }}</a>
     </h3>
 
-    <div class="text-grey">{{ Str::limit($project->description, 50) }}</div>
+    <div class="text-grey">{{ Str::limit($project->description, 100) }}</div>
 </div>

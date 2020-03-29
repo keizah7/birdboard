@@ -20,7 +20,7 @@ class TriggerActivityTest extends TestCase
         $this->assertCount(1, $project->activity);
 
         tap($project->activity->last(), function ($activity) {
-            $this->assertEquals('created', $activity->description);
+            $this->assertEquals('created_project', $activity->description);
 
             $this->assertNull($activity->changes);
         });
@@ -37,7 +37,7 @@ class TriggerActivityTest extends TestCase
         $this->assertCount(2, $project->activity);
 
         tap($project->activity->last(), function ($activity) use ($originalTitle) {
-            $this->assertEquals('updated', $activity->description);
+            $this->assertEquals('updated_project', $activity->description);
 
             $expected = [
                 'before' => ['title' => $originalTitle],
@@ -71,11 +71,12 @@ class TriggerActivityTest extends TestCase
 
         $this->actingAs($project->user)
             ->patch($project->tasks->first()->path(), [
-            'body' => 'text',
-            'completed' => true,
-        ]);
+                'body' => 'text',
+                'completed' => true,
+            ]);
 
         $this->assertCount(3, $project->activity);
+
         tap($project->activity->last(), function ($activity) {
             $this->assertEquals('completed_task', $activity->description);
             $this->assertInstanceOf(Task::class, $activity->subject);

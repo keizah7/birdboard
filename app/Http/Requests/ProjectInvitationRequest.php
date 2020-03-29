@@ -9,6 +9,13 @@ use Illuminate\Validation\Rule;
 class ProjectInvitationRequest extends FormRequest
 {
     /**
+     * The key to be used for the view error bag.
+     *
+     * @var string
+     */
+    protected $errorBag = 'invitations';
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool

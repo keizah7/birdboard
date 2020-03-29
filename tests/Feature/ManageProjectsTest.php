@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Project;
 use App\User;
+use Facades\Tests\Setup\ProjectFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -40,8 +41,6 @@ class ManageProjectsTest extends TestCase
         $project = Project::where($attributes)->first();
         $response->assertRedirect($project->path());
 
-        $this->assertDatabaseHas('projects', $attributes);
-
         $this->get($project->path())
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
@@ -51,19 +50,15 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_update_a_project()
     {
-        $this->signIn();
+        $project = ProjectFactory::create();
 
-        $project = factory(Project::class)->create(['user_id' => auth()->id()]);
-
-        $attributes = [
-            'title' => 'changed',
-            'description' => 'changed',
-            'notes' => 'changed',
-        ];
-        $this->patch($project->path(), $attributes)
+        $this->actingAs($project->user)
+            ->patch($project->path(), $attributes = [
+                'title' => 'changed',
+                'description' => 'changed',
+                'notes' => 'changed',
+            ])
             ->assertRedirect($project->path());
-
-        $this->get($project->path() . '/edit')->assertOk();
 
         $this->assertDatabaseHas('projects', $attributes);
     }
@@ -71,10 +66,10 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function a_user_can_view_their_project()
     {
-        $this->signIn();
+        $project = ProjectFactory::create();
 
-        $project = factory(Project::class)->create(['user_id' => auth()->id()]);
-        $this->get($project->path())
+        $this->actingAs($project->user)
+            ->get($project->path())
             ->assertSee($project->title);
     }
 
@@ -94,7 +89,7 @@ class ManageProjectsTest extends TestCase
         $this->signIn();
         $project = factory(Project::class)->create();
 
-        $this->patch($project->path(), [])
+        $this->patch($project->path())
             ->assertStatus(403);
     }
 

@@ -1,5 +1,11 @@
 module.exports = {
     theme: {
+        backgroundColor: theme => ({
+            page: 'var(--page-background-color)',
+            card: 'var(--card-background-color)',
+            button: 'var(--button-background-color)',
+            header: 'var(--header-background-color)'
+        }),
         colors: {
             grey: {
                 default: 'rgba(0, 0, 0, 0.4)',
@@ -12,6 +18,15 @@ module.exports = {
                 default: '#47cdff',
                 light: '#8ae2fe',
             },
+            default: 'var(--text-default-color)',
+            accent: {
+                default: 'var(--text-accent-color)',
+                light: 'var(--text-accent-light-color)',
+            },
+            muted: {
+                default: 'var(--text-muted-color)',
+                light: 'var(--text-muted-light-color)'
+            }
         },
         boxShadow: {
             default: '0 0 5px 0 rgba(0, 0, 0, 0.08)',

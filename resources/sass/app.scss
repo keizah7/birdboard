@@ -1,12 +1,19 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
-
-.button {
-    @apply bg-blue text-white no-underline rounded-lg text-sm py-2 px-5 shadow-blue;
-}
-
-.card {
-    @apply bg-white p-5 rounded-lg shadow;
-}
-
 @import "tailwindcss/utilities";
+
+
+@import 'themes/light';
+@import 'themes/dark';
+
+@import 'components/button';
+@import 'components/card';
+
+body,
+button {
+    @apply .text-default;
+}
+
+.section {
+    @apply .px-8;
+}

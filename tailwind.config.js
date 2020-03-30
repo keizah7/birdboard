@@ -7,6 +7,7 @@ module.exports = {
             header: 'var(--header-background-color)'
         }),
         colors: {
+            error: 'var(--text-error-color)',
             grey: {
                 default: 'rgba(0, 0, 0, 0.4)',
                 lighter: '#F5F6F9',

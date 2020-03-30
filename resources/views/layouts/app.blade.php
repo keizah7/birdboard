@@ -45,48 +45,34 @@
                             </ul>
 
                             <!-- Right Side Of Navbar -->
-                            <ul class="navbar-nav ml-auto list-reset">
+                            <div class="flex items-center ml-auto">
                                 <!-- Authentication Links -->
                                 @guest
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     @if (Route::has('register'))
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                        </li>
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     @endif
                                 @else
-                                    <li class="nav-item dropdown">
-                                        <a
-                                            id="navbarDropdown"
-                                            class="flex items-center text-default no-underline text-sm"
-                                            href="#" role="button"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="false"
-                                            v-pre
-                                        >
-                                            <img width="35"
-                                                class="rounded-full mr-3"
-                                                src="{{ gravatar_url(auth()->user()->email) }}">
-                                        </a>
+                                    <theme-switcher></theme-switcher>
 
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item"
-                                                href="{{ route('logout') }}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                            >
-                                                {{ __('Logout') }}
-                                            </a>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li>
+                                    <a id="navbarDropdown" class="flex items-center text-default no-underline text-sm" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <img width="35" class="rounded-full mr-3" src="{{ gravatar_url(auth()->user()->email) }}">
+
+                                        {{ auth()->user()->name }}
+                                    </a>
+
+{{--                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
+{{--                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">--}}
+{{--                                            {{ __('Logout') }}--}}
+{{--                                        </a>--}}
+
+{{--                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+{{--                                            @csrf--}}
+{{--                                        </form>--}}
+{{--                                    </div>--}}
                                 @endguest
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

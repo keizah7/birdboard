@@ -55,22 +55,26 @@
                                 @else
                                     <theme-switcher></theme-switcher>
 
+                                    <dropdown align="right" width="200px">
+                                        <template v-slot:trigger>
+                                            <button
+                                                class="flex items-center text-default no-underline text-sm focus:outline-none"
+                                                v-pre
+                                            >
+                                                <img width="35"
+                                                    class="rounded-full mr-3"
+                                                    src="{{ gravatar_url(auth()->user()->email) }}">
 
-                                    <a id="navbarDropdown" class="flex items-center text-default no-underline text-sm" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <img width="35" class="rounded-full mr-3" src="{{ gravatar_url(auth()->user()->email) }}">
+                                                {{ auth()->user()->name }}
+                                            </button>
+                                        </template>
 
-                                        {{ auth()->user()->name }}
-                                    </a>
+                                        <form id="logout-form" method="POST" action="/logout">
+                                            @csrf
 
-{{--                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-{{--                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">--}}
-{{--                                            {{ __('Logout') }}--}}
-{{--                                        </a>--}}
-
-{{--                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-{{--                                            @csrf--}}
-{{--                                        </form>--}}
-{{--                                    </div>--}}
+                                            <button type="submit" class="dropdown-menu-link w-full text-left">Logout</button>
+                                        </form>
+                                    </dropdown>
                                 @endguest
                             </div>
                         </div>

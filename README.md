@@ -10,7 +10,7 @@
 
 # Build A Laravel App With TDD
 
-###Birdboard:
+### Birdboard:
 a minimal Basecamp-like project management app.
 
 This project is for educational porpuses only. Pull request are welcome, but priority for my real-life students! Thank you for your cooperation!

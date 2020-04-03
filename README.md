@@ -13,7 +13,7 @@
 ### Birdboard:
 a minimal Basecamp-like project management app.
 
-This project is for educational porpuses only. Pull request are welcome, but priority for my real-life students! Thank you for your cooperation!
-
+This project is for educational porpuses only. Pull request are welcome! Thank you for your cooperation!
+W
 ### Authors
 [Artūras](https://github.com/keizah7) ![Followers](https://img.shields.io/github/followers/keizah7?style=social)

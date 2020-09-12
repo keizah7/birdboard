@@ -6,8 +6,6 @@
 ![Watchers](https://img.shields.io/github/watchers/keizah7/birdboard?style=social)
 ![Contributors](https://img.shields.io/github/contributors/keizah7/birdboard)
 
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
-
 # Build A Laravel App With TDD
 
 ### Birdboard:

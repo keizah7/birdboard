@@ -22,11 +22,13 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::query()->inRandomOrder()->first();
+
         return [
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->sentence(6),
             'notes' => $this->faker->sentence(2),
-            'user_id' => User::factory()->create(),
+            'user_id' => $this->faker->boolean ? ($user->id ?? User::factory()) : User::factory(),
         ];
     }
 }

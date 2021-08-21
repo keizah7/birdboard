@@ -16,7 +16,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function guest_cannot_control_projects()
     {
-        $project = factory(Project::class)->create();
+        $project = Project::factory()->create();
 
         $this->get('projects')->assertRedirect('login');
         $this->get('projects/create')->assertRedirect('login');
@@ -33,7 +33,7 @@ class ManageProjectsTest extends TestCase
         $this->get('/projects/create')->assertStatus(200);
 
         $this->followingRedirects()
-            ->post('/projects', $attributes = factory(Project::class)->raw())
+            ->post('/projects', $attributes = Project::factory()->raw())
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
             ->assertSee($attributes['notes']);
@@ -44,7 +44,7 @@ class ManageProjectsTest extends TestCase
     {
         $this->signIn();
 
-        $attributes = factory(Project::class)->raw();
+        $attributes = Project::factory()->raw();
 
         $attributes['tasks'] = [
             ['body' => 'Task 1'],
@@ -136,7 +136,7 @@ class ManageProjectsTest extends TestCase
     public function a_user_cant_view_projects_of_others()
     {
         $this->signIn();
-        $project = factory(Project::class)->create();
+        $project = Project::factory()->create();
 
         $this->get($project->path())
             ->assertStatus(403);
@@ -146,7 +146,7 @@ class ManageProjectsTest extends TestCase
     public function a_user_cant_update_projects_of_others()
     {
         $this->signIn();
-        $project = factory(Project::class)->create();
+        $project = Project::factory()->create();
 
         $this->patch($project->path())
             ->assertStatus(403);
@@ -157,9 +157,7 @@ class ManageProjectsTest extends TestCase
     {
         $this->signIn();
 
-        $attributes = factory(Project::class)->raw([
-            'title' => '',
-        ]);
+        $attributes = Project::factory(['title' => ''])->raw();
 
         $this->post('projects', $attributes)
             ->assertSessionHasErrors('title');
@@ -170,9 +168,7 @@ class ManageProjectsTest extends TestCase
     {
         $this->signIn();
 
-        $attributes = factory(Project::class)->raw([
-            'description' => '',
-        ]);
+        $attributes = Project::factory(['description' => ''])->raw();
 
         $this->post('projects', $attributes)
             ->assertSessionHasErrors('description');

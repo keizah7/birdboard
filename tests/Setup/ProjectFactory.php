@@ -38,13 +38,16 @@ class ProjectFactory
      */
     public function create()
     {
-        $project = factory(Project::class)->create([
-            'user_id' => $this->user ?? factory(User::class)
-        ]);
+        $project = Project::factory([
+            'user_id' => $this->user ?? User::factory()->create()->id,
+        ])
+            ->create();
 
-        factory(Task::class, $this->tasksCount)->create([
+        Task::factory([
             'project_id' => $project->id,
-        ]);
+        ])
+            ->count($this->tasksCount)
+            ->create();
 
         return $project;
     }

@@ -3,12 +3,14 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -37,11 +39,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function projects()
+    public function projects(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Project::class)->latest('updated_at');
     }
-
 
     /**
      * Get all projects that the user has access to.

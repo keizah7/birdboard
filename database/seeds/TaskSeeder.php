@@ -11,6 +11,8 @@ class TaskSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Task::factory()
+            ->count(rand(5, 15))
+            ->create();
     }
 }

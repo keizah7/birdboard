@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
     use RecordsActivity;
+    use HasFactory;
 
     protected $guarded = [];
     protected $touches = ['project'];

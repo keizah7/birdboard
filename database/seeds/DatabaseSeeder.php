@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        \App\User::factory([
+            'email' => 'info@wisecode.lt'
+        ])->create();
+
+         $this->call(ProjectSeeder::class);
+         $this->call(TaskSeeder::class);
+         $this->call(ActivitySeeder::class);
     }
 }

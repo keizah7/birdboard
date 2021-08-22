@@ -14,7 +14,7 @@ class ProjectTest extends TestCase
     /** @test */
     public function has_a_path()
     {
-        $project = factory(Project::class)->create();
+        $project = Project::factory()->create();
 
         $this->assertEquals('/projects/' . $project->id, $project->path());
     }
@@ -22,7 +22,7 @@ class ProjectTest extends TestCase
     /** @test */
     public function belongs_to_user()
     {
-        $project = factory(Project::class)->create();
+        $project = Project::factory()->create();
 
         $this->assertInstanceOf(User::class, $project->user);
     }
@@ -30,7 +30,7 @@ class ProjectTest extends TestCase
     /** @test */
     public function can_add_a_task()
     {
-        $project = factory(Project::class)->create();
+        $project = Project::factory()->create();
 
         $task = $project->addTask('qwertyuiop');
 
@@ -42,9 +42,9 @@ class ProjectTest extends TestCase
     /** @test */
     public function can_invite_a_user()
     {
-        $project = factory(Project::class)->create();
+        $project = Project::factory()->create();
 
-        $project->invite($user = factory(User::class)->create());
+        $project->invite($user = User::factory()->create());
 
         $this->assertTrue($project->members->contains($user));
     }

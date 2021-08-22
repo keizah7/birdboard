@@ -2,8 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 /**
  * Class Project
@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 class Project extends Model
 {
     use RecordsActivity;
+    use HasFactory;
 
     protected $guarded = [];
 

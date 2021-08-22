@@ -11,6 +11,8 @@ class ActivitySeeder extends Seeder
      */
     public function run()
     {
-        //
+//        \App\Activity::factory()
+//            ->count(rand(0, 10))
+//            ->create();
     }
 }

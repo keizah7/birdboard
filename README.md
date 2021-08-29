@@ -1,5 +1,5 @@
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
-[![Chat](https://img.shields.io/discord/620935790867906561?label=chat)](https://discordapp.com/channels/620935790867906561)
+[![Chat](https://img.shields.io/discord/620935790867906561?label=chat)](https://discord.gg/YeJBQrTUT9)
 ![HitCount](https://views.whatilearened.today/views/github/keizah7/birdboard.svg)
 ![Forks](https://img.shields.io/github/forks/keizah7/birdboard?style=social)
 ![Stars](https://img.shields.io/github/stars/keizah7/birdboard?style=social)
